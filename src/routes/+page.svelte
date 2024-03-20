@@ -9,6 +9,11 @@
   function start() {
     time = source('/events').select('time');
   }
+
+  function stop() {
+    source('/events').close();
+    time = null;
+  }
 </script>
 
 {#if !time}
@@ -16,5 +21,8 @@
     <span>What time is it?</span>
   </button>
 {:else}
-  {$time}
+  {$time}<br />
+  <button on:click={stop}>
+    <span>Okay, thanks.</span>
+  </button>
 {/if}
